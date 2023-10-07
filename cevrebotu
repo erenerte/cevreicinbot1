@@ -1,0 +1,42 @@
+import discord
+from discord.ext import commands
+from settings import settings
+#3. satırı silip token'ınızı token1 yerine koyabilirsiniz
+intents = discord.Intents.default()
+intents.message_content = True
+
+# Botunuzu oluşturun
+bot = commands.Bot(command_prefix='*', intents=intents)
+
+# Yardım komutunu oluşturun
+@bot.command()
+async def yardim(ctx):
+    yardim_mesaji = """
+    Merhaba! Ben çevre dostu bir Discord botuyum. İşte kullanabileceğiniz komutlar:
+    
+    *link - Derneğe katilmak ve bilgi almak
+    *orman_yangini - orman yanginlarini durdurma fikirleri
+    *tavsiyeler - sana küresel isinma hakkinda şeyler verebilirim
+    """
+    await ctx.send(yardim_mesaji)
+
+# Bilgi komutunu oluşturun
+@bot.command()
+async def link(ctx):
+    cevreye_yardim_linkleri = "https://www.cevko.org.tr/index.php?lang=tr bu ÇEVKO buradan bilgilerde alabilirsin"
+    await ctx.send(cevreye_yardim_linkleri)
+
+# Geri dönüşüm komutunu oluşturun
+@bot.command()
+async def orman_yangini(ctx):
+    orman_yangini = "orman yangınları özellikle Türkiyede çok büyük bir sorun.Onları söndürmek için bazı fikirler var.Mesela suyu düz ormana boşaltmak yerine yağmurlama sistemi yapmak."
+    await ctx.send(orman_yangini)
+
+# Enerji tasarrufu komutunu oluşturun
+@bot.command()
+async def tavsiyeler(ctx):
+    tavsiyeler = "Kürsel ısınmayı engellemek aslında zor değil.Elon Musk Tesla ile elektrikli arabalar yapıyor.Tabii bu sadece bir örnek.Sera etkisi engellemek için:https://kafessizturkiye.com/blog/endustriyel-hayvancilik-ve-iklim-degisikligi?gclid=CjwKCAjwg4SpBhAKEiwAdyLwvD4oAGiSkHDhJ3sFapIPrORHmRiB-uov2wuCqRSwl8l1xuVO9CknsBoC-YAQAvD_BwE"
+    await ctx.send(tavsiyeler)
+
+# Botunuzu çalıştırın
+bot.run(settings['token1'])
